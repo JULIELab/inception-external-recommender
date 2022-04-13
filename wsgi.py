@@ -1,12 +1,15 @@
 from ariadne.server import Server
 from ariadne.util import setup_logging
-from ariadne.contrib.spacy import SpacyNerClassifier
+#from ariadne.contrib.spacy import SpacyNerClassifier
+from ariadne.contrib.julielab import MedicationAnnotator
 
 setup_logging()
 
 server = Server()
 
-server.add_classifier("spacy_ner", SpacyNerClassifier("en_core_web_sm"))
+server.add_classifier("julielab_medication_i2b2_2009", MedicationAnnotator("I2B2-2009"))
+server.add_classifier("julielab_medication_n2c2_2018", MedicationAnnotator("N2C2-2018"))
+#server.add_classifier("spacy_ner", SpacyNerClassifier("en_core_web_sm"))
 # server.add_classifier("spacy_pos", SpacyPosClassifier("en_core_web_sm"))
 # server.add_classifier("sklearn_sentence", SklearnSentenceClassifier())
 # server.add_classifier("jieba", JiebaSegmenter())
