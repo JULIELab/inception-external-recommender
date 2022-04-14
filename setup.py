@@ -30,7 +30,7 @@ contrib_dependencies = [
     "spacy~=3.0",
     "nltk~=3.5",
     "jieba~=0.42",
-    "sentence-transformers~=0.3.6",
+    "sentence-transformers~=2.2.0",
     "lightgbm~=3.1.1",
     "diskcache~=5.2.1"
 ]
