@@ -24,7 +24,8 @@ class Classifier:
 
     def _load_model(self, user_id: str) -> Optional[Any]:
         model_path = self._get_model_path(user_id)
-        if model_path.is_file():
+        #if model_path.is_file():
+        if os.path.isfile(model_path):
             logger.debug("Model found for [%s]", model_path)
             return joblib.load(model_path)
         else:
@@ -39,7 +40,8 @@ class Classifier:
         os.replace(tmp_model_path, model_path)
 
     def _get_model_path(self, user_id: str) -> Path:
-        return self.model_directory / self.name / f"model_{user_id}.joblib"
+        # return self.model_directory / self.name / f"model_{user_id}.joblib"
+        return os.path.join(self.model_directory, self.name, f"model_{user_id}.joblib")
 
     @property
     def name(self) -> str:
