@@ -158,3 +158,23 @@ The simplest way to develop in deployment setting, that is using `gunicorn` is t
     make gunicorn
     
 This starts `gunicorn` with 4 workers and hot-code reloading.
+
+## Documentation regarding the work of the JULIE Lab for the SMITH project collaboration with Averbis
+
+The JULIE Lab provides code for the annotation of medication expression, i.e. which drug is prescribed, how often it should be taken, how much should be taken etc. There are currently the following annotators available in the `ariadne/contrib/julielab.py` module:
+* MedicationAnnotator: Employs a BERT model to recognize medication entity mentions.
+* MedicationRelationAnnotator: Created binary relations between mentions of drugs and their specifying entities.
+
+### Testing
+
+The `MedicationAnnotator` test expects a BERT model to reside in the `I2B2-2009` directory and will fail if it is not present. The model is not checked into the repository. It might be made available on request, if required.
+
+Tests for the JULIE Lab annotators have been added to the `tests` directory. Run them via `pytest`:
+
+```
+pytest [-s] tests/test_julielab*
+```
+
+The `-s` flag causes `print()` commands to actually appear on console instead of being hidden.
+
+Note that all other tests fail for various reasons in this repository version. It doesn't seem that the JULIE Lab changes are responsible for them because there are wrong paths to classes or modules that the JULIE Lab did not change.
